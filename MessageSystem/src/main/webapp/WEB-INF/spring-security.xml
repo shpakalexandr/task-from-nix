@@ -1,0 +1,28 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http auto-config="true">
+		<intercept-url pattern="/login*" access="ROLE_USER, ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN"/>
+		<logout logout-success-url="/index.jsp" />
+	</http>
+
+	<beans:bean
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+
+				users-by-username-query="select user_nickname, user_password, user_enabled from app_users where
+				 user_nickname=?"
+
+				authorities-by-username-query="select u.user_nickname, ur.ROLE_NAME from app_users u,
+				 app_user_role ur where u.user_role_id = ur.role_id and u.user_nickname =?  " />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
