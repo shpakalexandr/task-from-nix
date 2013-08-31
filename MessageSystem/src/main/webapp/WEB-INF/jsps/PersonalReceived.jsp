@@ -19,7 +19,6 @@
 						полученных сообщений</FONT></B></td>
 			</tr>
 		</table>
-	</form>
 
 	<table border="3" width="100%">
 		<tr bgcolor="silver">
