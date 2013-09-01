@@ -2,29 +2,44 @@ package com.nix.testtask.db;
 
 public class Message {
 	private int messageid;
-	private int whosendmessage;
-	private int whoreceivemessage;
+	private int whosendmessageid;
+	private String whosendmessagenickname;
+	private int whoreceivemessageid;
+	private String whoreceivemessagenickname;
 	private String messagetitle;
 	private String messagebody;
 	private Boolean displaytosender;
 	private Boolean displaytoreceiver;
+
 	public int getMessageid() {
 		return messageid;
 	}
 	public void setMessageid(int messageid) {
 		this.messageid = messageid;
 	}
-	public int getWhosendmessage() {
-		return whosendmessage;
+	public int getWhosendmessageid() {
+		return whosendmessageid;
 	}
-	public void setWhosendmessage(int whosendmessage) {
-		this.whosendmessage = whosendmessage;
+	public void setWhosendmessageid(int whosendmessageid) {
+		this.whosendmessageid = whosendmessageid;
 	}
-	public int getWhoreceivemessage() {
-		return whoreceivemessage;
+	public String getWhosendmessagenickname() {
+		return whosendmessagenickname;
 	}
-	public void setWhoreceivemessage(int whoreceivemessage) {
-		this.whoreceivemessage = whoreceivemessage;
+	public void setWhosendmessagenickname(String whosendmessagenickname) {
+		this.whosendmessagenickname = whosendmessagenickname;
+	}
+	public int getWhoreceivemessageid() {
+		return whoreceivemessageid;
+	}
+	public void setWhoreceivemessageid(int whoreceivemessageid) {
+		this.whoreceivemessageid = whoreceivemessageid;
+	}
+	public String getWhoreceivemessagenickname() {
+		return whoreceivemessagenickname;
+	}
+	public void setWhoreceivemessagenickname(String whoreceivemessagenickname) {
+		this.whoreceivemessagenickname = whoreceivemessagenickname;
 	}
 	public String getMessagetitle() {
 		return messagetitle;
@@ -50,6 +65,4 @@ public class Message {
 	public void setDisplaytoreceiver(Boolean displaytoreceiver) {
 		this.displaytoreceiver = displaytoreceiver;
 	}
-	
-	
 }

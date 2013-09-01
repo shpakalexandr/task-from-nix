@@ -49,7 +49,7 @@
 					<td>
 						<table width="100%">
 							<c:url var="modifyUrl" value="/ModifyUser?id=${current.userid}" />
-							<c:url var="deleteUrl" value="/Delete?id=${current.userid}" />
+							<c:url var="deleteUrl" value="/DeleteUser?id=${current.userid}" />
 							<c:url var="receivedUrl" value="/Received?id=${current.usernickname}" />
 							<c:url var="postedUrl" value="/Posted?id=${current.usernickname}" />
 							<tr>

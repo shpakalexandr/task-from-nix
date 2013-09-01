@@ -8,14 +8,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Received Messages</title>
+<title>Sended Messages</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="logout.jsp"></jsp:include>
 	<table width="100%">
 		<tr>
-			<td align="left"><B><FONT SIZE=3 COLOR=BLACK>Полученные
+			<td align="left"><B><FONT SIZE=3 COLOR=BLACK>Отправленные
 						сообщения участника <B><FONT SIZE=4 COLOR=BLUE><c:out
 									value="${username}" /></FONT></B>
 				</FONT></B></td>
@@ -24,14 +24,14 @@
 
 	<table border="3" width="100%">
 		<tr bgcolor="silver">
-			<td width="100">Отправитель</td>
+			<td width="100">Получатель</td>
 			<td width="100">Тема</td>
 			<td>Сообщение</td>
 			<td width="100">Actions</td>
 		</tr>
 		<c:forEach items="${mesList}" var="cur">
 			<tr>
-				<td><c:out value="${cur.whosendmessagenickname}" /></td>
+				<td><c:out value="${cur.whoreceivemessagenickname}" /></td>
 				<td><c:out value="${cur.messagetitle}" /></td>
 				<td><c:out value="${cur.messagebody}" /></td>
 				<td><c:url var="deleteMessUrl"

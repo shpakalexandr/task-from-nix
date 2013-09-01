@@ -110,7 +110,7 @@ public class AnalysisAndSendServlet extends HttpServlet {
 					DatabaseHelper.insertMessage(whosend, receiver, title,
 							message);
 					RequestDispatcher dispatcher = req
-							.getRequestDispatcher("/");
+							.getRequestDispatcher("/login");
 					dispatcher.forward(req, resp);
 					return; /*
 							 * You aren't returning after the forward when the

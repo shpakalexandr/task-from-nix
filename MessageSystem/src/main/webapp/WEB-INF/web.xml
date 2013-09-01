@@ -56,8 +56,8 @@
 		<servlet-class>com.nix.testtask.servlets.AnalysisAndModifyServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>deleteServlet</servlet-name>
-		<servlet-class>com.nix.testtask.servlets.DeleteServlet</servlet-class>
+		<servlet-name>deleteUserServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.DeleteUserServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>sendMessageServlet</servlet-name>
@@ -71,6 +71,11 @@
 		<servlet-name>personalReceivedServlet</servlet-name>
 		<servlet-class>com.nix.testtask.servlets.PersonalReceivedServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>personalSendedServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.PersonalSendedServlet</servlet-class>
+	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
@@ -97,8 +102,8 @@
 		<url-pattern>/UserModify</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>deleteServlet</servlet-name>
-		<url-pattern>/Delete</url-pattern>
+		<servlet-name>deleteUserServlet</servlet-name>
+		<url-pattern>/DeleteUser</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>sendMessageServlet</servlet-name>
@@ -111,6 +116,10 @@
 	<servlet-mapping>
 		<servlet-name>personalReceivedServlet</servlet-name>
 		<url-pattern>/PersonalReceived</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>personalSendedServlet</servlet-name>
+		<url-pattern>/PersonalSended</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

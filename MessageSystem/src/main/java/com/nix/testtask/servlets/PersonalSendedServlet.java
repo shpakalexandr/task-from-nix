@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.nix.testtask.db.DatabaseHelper;
 import com.nix.testtask.db.Message;
 
-public class PersonalReceivedServlet extends HttpServlet {
+public class PersonalSendedServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,13 +27,13 @@ public class PersonalReceivedServlet extends HttpServlet {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 
-		List<Message> mesList = DatabaseHelper.selectUserMessage("received", auth.getName());
+		List<Message> mesList = DatabaseHelper.selectUserMessage("sended", auth.getName());
 		
 		req.setAttribute("username", auth.getName());
 		req.setAttribute("mesList", mesList);
 
 		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("/WEB-INF/jsps/PersonalReceived.jsp");
+				.getRequestDispatcher("/WEB-INF/jsps/PersonalSended.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
