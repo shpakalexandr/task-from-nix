@@ -147,8 +147,8 @@ public class DatabaseHelper {
 					+ "MESS_BODY VARCHAR(255) NOT NULL, "
 					+ "DISP_MESS_SENDER BOOLEAN NOT NULL, "
 					+ "DISP_MESS_RECEIVER BOOLEAN NOT NULL, "
-					+ "FOREIGN KEY (WHO_SEND_MESS_ID) REFERENCES " + USERS_TABLE
-					+ " (USER_ID),"
+					+ "FOREIGN KEY (WHO_SEND_MESS_ID) REFERENCES "
+					+ USERS_TABLE + " (USER_ID),"
 					+ "FOREIGN KEY (WHO_RECEIVE_MESS_ID) REFERENCES "
 					+ USERS_TABLE + " (USER_ID)," + "PRIMARY KEY (MESS_ID));";
 			stmt.execute(sqlsrc);
@@ -234,9 +234,9 @@ public class DatabaseHelper {
 			stmt.setInt(1, getIDByUsername(whosendmess));
 			stmt.setString(2, whosendmess);
 			stmt.setInt(3, getIDByUsername(whoreceivemess));
-			
+
 			stmt.setString(4, whoreceivemess);
-			
+
 			stmt.setString(5, messagetitle);
 			stmt.setString(6, messagebody);
 
@@ -313,8 +313,7 @@ public class DatabaseHelper {
 		Statement stmt = null;
 		List<User> userList = new ArrayList<User>();
 		try {
-			String sqlsrc = "SELECT * FROM "
-					+ USERS_TABLE + ";";
+			String sqlsrc = "SELECT * FROM " + USERS_TABLE + ";";
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlsrc);
 
@@ -345,29 +344,33 @@ public class DatabaseHelper {
 	public static List<Message> selectUserMessage(String type, String nickname) {
 		Statement stmt = null;
 		List<Message> messageList = new ArrayList<Message>();
-		
+
 		try {
-			String sqlsrc = "SELECT * FROM "
-					+ MESSAGE_TABLE + ";";
+			String sqlsrc = "SELECT * FROM " + MESSAGE_TABLE + ";";
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlsrc);
 
 			if (type.equals("sended")) {
-				
+
 				while (rs.next()) {
 					if (nickname.equals(rs.getString("WHO_SEND_MESS_NICKNAME"))
 							& (rs.getBoolean("DISP_MESS_SENDER"))) {
 						Message mes = new Message();
-						
+
 						mes.setMessageid(rs.getInt("MESS_ID"));
 						mes.setWhosendmessageid(rs.getInt("WHO_SEND_MESS_ID"));
-						mes.setWhosendmessagenickname(rs.getString("WHO_SEND_MESS_NICKNAME"));
-						mes.setWhoreceivemessageid(rs.getInt("WHO_RECEIVE_MESS_ID"));
-						mes.setWhoreceivemessagenickname(rs.getString("WHO_RECEIVE_MESS_NICKNAME"));
+						mes.setWhosendmessagenickname(rs
+								.getString("WHO_SEND_MESS_NICKNAME"));
+						mes.setWhoreceivemessageid(rs
+								.getInt("WHO_RECEIVE_MESS_ID"));
+						mes.setWhoreceivemessagenickname(rs
+								.getString("WHO_RECEIVE_MESS_NICKNAME"));
 						mes.setMessagetitle(rs.getString("MESS_TITLE"));
 						mes.setMessagebody(rs.getString("MESS_BODY"));
-						mes.setDisplaytosender(rs.getBoolean("DISP_MESS_SENDER"));
-						mes.setDisplaytoreceiver(rs.getBoolean("DISP_MESS_RECEIVER"));
+						mes.setDisplaytosender(rs
+								.getBoolean("DISP_MESS_SENDER"));
+						mes.setDisplaytoreceiver(rs
+								.getBoolean("DISP_MESS_RECEIVER"));
 
 						messageList.add(mes);
 					}
@@ -377,19 +380,25 @@ public class DatabaseHelper {
 			if (type.equals("received")) {
 				while (rs.next()) {
 
-					if (nickname.equals(rs.getString("WHO_RECEIVE_MESS_NICKNAME"))
+					if (nickname.equals(rs
+							.getString("WHO_RECEIVE_MESS_NICKNAME"))
 							& (rs.getBoolean("DISP_MESS_RECEIVER"))) {
 						Message mes = new Message();
-						
+
 						mes.setMessageid(rs.getInt("MESS_ID"));
 						mes.setWhosendmessageid(rs.getInt("WHO_SEND_MESS_ID"));
-						mes.setWhosendmessagenickname(rs.getString("WHO_SEND_MESS_NICKNAME"));
-						mes.setWhoreceivemessageid(rs.getInt("WHO_RECEIVE_MESS_ID"));
-						mes.setWhoreceivemessagenickname(rs.getString("WHO_RECEIVE_MESS_NICKNAME"));
+						mes.setWhosendmessagenickname(rs
+								.getString("WHO_SEND_MESS_NICKNAME"));
+						mes.setWhoreceivemessageid(rs
+								.getInt("WHO_RECEIVE_MESS_ID"));
+						mes.setWhoreceivemessagenickname(rs
+								.getString("WHO_RECEIVE_MESS_NICKNAME"));
 						mes.setMessagetitle(rs.getString("MESS_TITLE"));
 						mes.setMessagebody(rs.getString("MESS_BODY"));
-						mes.setDisplaytosender(rs.getBoolean("DISP_MESS_SENDER"));
-						mes.setDisplaytoreceiver(rs.getBoolean("DISP_MESS_RECEIVER"));
+						mes.setDisplaytosender(rs
+								.getBoolean("DISP_MESS_SENDER"));
+						mes.setDisplaytoreceiver(rs
+								.getBoolean("DISP_MESS_RECEIVER"));
 
 						messageList.add(mes);
 					}
@@ -411,8 +420,7 @@ public class DatabaseHelper {
 		Statement stmt = null;
 		User u = new User();
 		try {
-			String sqlsrc = "SELECT * FROM "
-					+ USERS_TABLE + ";";
+			String sqlsrc = "SELECT * FROM " + USERS_TABLE + ";";
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlsrc);
 
@@ -535,6 +543,7 @@ public class DatabaseHelper {
 	public static void deleteUser(int ID) {
 		Statement stmt = null;
 		try {
+			removeUserLinks(ID);
 			String sqlsrc = "DELETE FROM " + USERS_TABLE + " WHERE USER_ID="
 					+ ID + ";";
 			stmt = conn.createStatement();
@@ -544,5 +553,41 @@ public class DatabaseHelper {
 		} finally {
 			closeStatement(stmt);
 		}
+	}
+
+	private static void removeUserLinks(int ID) {
+		Statement stmt = null;
+		try {
+			String sqlsrc = "SELECT * FROM " + MESSAGE_TABLE + ";";
+			String sqlup = "";
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlsrc);
+			while (rs.next()) {
+				stmt = conn.createStatement();
+				if (rs.getInt("WHO_SEND_MESS_ID") == ID) {
+					sqlup = "UPDATE "
+							+ MESSAGE_TABLE
+							+ " SET WHO_SEND_MESS_ID=NULL, WHO_SEND_MESS_NICKNAME=\'"
+							+ rs.getString("WHO_SEND_MESS_NICKNAME")
+							+ "(Удален)\'" + " WHERE MESS_ID="
+							+ rs.getInt("MESS_ID") + ";";
+					stmt.executeUpdate(sqlup);
+				}
+				if (rs.getInt("WHO_RECEIVE_MESS_ID") == ID) {
+					sqlup = "UPDATE "
+							+ MESSAGE_TABLE
+							+ " SET WHO_RECEIVE_MESS_ID=NULL, WHO_RECEIVE_MESS_NICKNAME=\'"
+							+ rs.getString("WHO_RECEIVE_MESS_NICKNAME")
+							+ "(Удален)\'" + " WHERE MESS_ID="
+							+ rs.getInt("MESS_ID") + ";";
+					stmt.executeUpdate(sqlup);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+		}
+
 	}
 }

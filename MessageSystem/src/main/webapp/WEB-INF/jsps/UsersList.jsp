@@ -29,7 +29,6 @@
 
 	<table border="3" width="100%">
 		<tr bgcolor="silver">
-			<td>ID</td>
 			<td width="150">Фамалия</td>
 			<td width="150">Имя</td>
 			<td width="150">Никнэйм</td>
@@ -40,7 +39,6 @@
 		</tr>
 		<c:forEach items="${listUsers}" var="current">
 			<tr>
-				<td><c:out value="${current.userid}" /></td>
 				<td><c:out value="${current.userlastname}" /></td>
 				<td><c:out value="${current.userfirstname}" /></td>
 				<td><c:out value="${current.usernickname}" /></td>

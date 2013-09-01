@@ -75,6 +75,10 @@
 		<servlet-name>personalSendedServlet</servlet-name>
 		<servlet-class>com.nix.testtask.servlets.PersonalSendedServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>successSendServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.SuccessSendServlet</servlet-class>
+	</servlet>
 	
 
 	<servlet-mapping>
@@ -120,6 +124,10 @@
 	<servlet-mapping>
 		<servlet-name>personalSendedServlet</servlet-name>
 		<url-pattern>/PersonalSended</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>successSendServlet</servlet-name>
+		<url-pattern>/SuccessSend</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
