@@ -24,8 +24,7 @@ public class PersonalSendedServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("going to sendmessage-page");
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		List<Message> mesList = DatabaseHelper.selectUserMessage("sended", auth.getName());
 		

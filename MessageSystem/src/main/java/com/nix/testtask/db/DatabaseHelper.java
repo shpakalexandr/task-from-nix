@@ -380,8 +380,7 @@ public class DatabaseHelper {
 			if (type.equals("received")) {
 				while (rs.next()) {
 
-					if (nickname.equals(rs
-							.getString("WHO_RECEIVE_MESS_NICKNAME"))
+					if (nickname.equals(rs.getString("WHO_RECEIVE_MESS_NICKNAME"))
 							& (rs.getBoolean("DISP_MESS_RECEIVER"))) {
 						Message mes = new Message();
 

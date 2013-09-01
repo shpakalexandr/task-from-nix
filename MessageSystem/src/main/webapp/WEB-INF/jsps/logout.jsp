@@ -24,7 +24,7 @@
 		</c:if>
 			<td class="current"> </td>
 			<td align="right"><B><FONT SIZE=2><a
-						href="<c:url value="j_spring_security_logout" />"> Logout</a></FONT></B></td>
+						href="<c:url value="j_spring_security_logout" />">Logout</a></FONT></B></td>
 		</tr>
 	</table>
 </body>

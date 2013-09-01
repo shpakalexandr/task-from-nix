@@ -8,6 +8,15 @@
 	<http auto-config="true">
 		<intercept-url pattern="/index*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login*" access="ROLE_USER, ROLE_ADMIN" />
+		<intercept-url pattern="/CreateUser" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/ModifyUser" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/UserCreate" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/UserModify" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/DeleteUser" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/AdministrationReceived" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/AdminDeleteReceivedMessage" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/AdministrationSended" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/AdminDeleteSendedMessage" access="ROLE_ADMIN"/>
 		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
 		<logout logout-success-url="/index.jsp" />
 	</http>

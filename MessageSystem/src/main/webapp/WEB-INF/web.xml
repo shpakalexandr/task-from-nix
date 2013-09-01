@@ -87,6 +87,23 @@
 		<servlet-name>deleteReceivedMessageServlet</servlet-name>
 		<servlet-class>com.nix.testtask.servlets.DeleteReceivedMessageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>adminReceivedServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.AdministrationReceivedServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>adminDeleteReceivedServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.AdminDeleteReceivedMessageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>adminSendedServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.AdministrationSendedServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>adminDeleteSendedServlet</servlet-name>
+		<servlet-class>com.nix.testtask.servlets.AdminDeleteSendedMessageServlet</servlet-class>
+	</servlet>
+
 
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
@@ -143,6 +160,22 @@
 	<servlet-mapping>
 		<servlet-name>deleteReceivedMessageServlet</servlet-name>
 		<url-pattern>/DeleteReceivedMessage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>adminReceivedServlet</servlet-name>
+		<url-pattern>/AdministrationReceived</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>adminDeleteReceivedServlet</servlet-name>
+		<url-pattern>/AdminDeleteReceivedMessage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>adminSendedServlet</servlet-name>
+		<url-pattern>/AdministrationSended</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>adminDeleteSendedServlet</servlet-name>
+		<url-pattern>/AdminDeleteSendedMessage</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

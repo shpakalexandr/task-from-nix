@@ -25,6 +25,7 @@ public class LoadUsersListServlet extends HttpServlet {
 
 		List<User> listUser = DatabaseHelper.selectAllUsers();
 		req.setAttribute("listUsers", listUser);
+		req.getSession().setAttribute("UserName", null);
 		
 		Breadcrumbs b = (Breadcrumbs) req.getSession().getAttribute("breadcrumbs");
 		b.setParent2(new Node(NodeNames.MAIN, NodeNames.MAIN_URL));

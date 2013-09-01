@@ -48,13 +48,14 @@
 						<table width="100%">
 							<c:url var="modifyUrl" value="/ModifyUser?id=${current.userid}" />
 							<c:url var="deleteUrl" value="/DeleteUser?id=${current.userid}" />
-							<c:url var="receivedUrl" value="/Received?id=${current.usernickname}" />
-							<c:url var="postedUrl" value="/Posted?id=${current.usernickname}" />
+							<c:url var="receivedUrl"
+								value="/AdministrationReceived?id=${current.userid}" />
+							<c:url var="sendedUrl" value="/AdministrationSended?id=${current.userid}" />
 							<tr>
 								<td><a href="${modifyUrl}">Модифицировать</a></td>
 								<td><a href="${deleteUrl}">Удалить</a></td>
 								<td><a href="${receivedUrl}">Полученные</a></td>
-								<td><a href="${postedUrl}">Отправленные</a></td>
+								<td><a href="${sendedUrl}">Отправленные</a></td>
 							</tr>
 						</table>
 					</td>
