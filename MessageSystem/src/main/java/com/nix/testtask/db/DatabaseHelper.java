@@ -588,6 +588,47 @@ public class DatabaseHelper {
 		} finally {
 			closeStatement(stmt);
 		}
+	}
 
+	public static void removeFromSended(int ID) {
+		Statement stmt = null;
+
+		try {
+			/*
+			 * String sqlsrc = "SELECT WHO_SEND_ID FROM  " + MESSAGE_TABLE +
+			 * " WHERE MESS_ID="+ ID + ";"; stmt = conn.createStatement();
+			 * ResultSet rs = stmt.executeQuery(sqlsrc);
+			 */
+
+			String sqlsrc = "UPDATE " + MESSAGE_TABLE
+					+ " SET DISP_MESS_SENDER=FALSE WHERE MESS_ID=" + ID + ";";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sqlsrc);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+		}
+	}
+
+	public static void removeFromReceived(int ID) {
+		Statement stmt = null;
+
+		try {
+			/*
+			 * String sqlsrc = "SELECT WHO_SEND_ID FROM  " + MESSAGE_TABLE +
+			 * " WHERE MESS_ID="+ ID + ";"; stmt = conn.createStatement();
+			 * ResultSet rs = stmt.executeQuery(sqlsrc);
+			 */
+
+			String sqlsrc = "UPDATE " + MESSAGE_TABLE
+					+ " SET DISP_MESS_RECEIVER=FALSE WHERE MESS_ID=" + ID + ";";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sqlsrc);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+		}
 	}
 }

@@ -35,7 +35,7 @@
 				<td><c:out value="${cur.messagetitle}" /></td>
 				<td><c:out value="${cur.messagebody}" /></td>
 				<td><c:url var="deleteMessUrl"
-						value="/DeleteMessage?id=${cur.messageid}" /><a
+						value="/DeleteReceivedMessage?id=${cur.messageid}" /><a
 					href="${deleteMessUrl}">Удалить</a></td>
 			</tr>
 		</c:forEach>
