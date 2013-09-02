@@ -17,8 +17,6 @@ public class DeleteSendedMessageServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
-		System.out.println("going to deletesendedmessage-page");
 		
 		int id = Integer.parseInt(req.getParameter("id"));
 		DatabaseHelper.removeFromSended(id);

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nix.testtask.breadcrumbs.Breadcrumbs;
+import com.nix.testtask.breadcrumbs.Node;
+import com.nix.testtask.breadcrumbs.NodeNames;
 import com.nix.testtask.db.DatabaseHelper;
 import com.nix.testtask.db.Message;
 import com.nix.testtask.db.User;
@@ -21,10 +24,11 @@ public class AdministrationReceivedServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("going to administrationreceived-page");
+		Breadcrumbs b = (Breadcrumbs) req.getSession().getAttribute("breadcrumbs");
+		b.setParent1(new Node(NodeNames.MAIN, NodeNames.MAIN_URL));
+		b.setParent2(new Node(NodeNames.USER_LIST, NodeNames.USER_LIST_URL));
+		b.setCurrent(new Node(NodeNames.ADMIN_RECEIVED_MESS));
 
-		 System.out.println("UserName = " + (String)req.getSession().getAttribute("UserName"));
-		
 		if (req.getSession().getAttribute("UserName") == null) {
 
 			int id = Integer.parseInt(req.getParameter("id"));
@@ -40,7 +44,6 @@ public class AdministrationReceivedServlet extends HttpServlet {
 			List<Message> mesList = DatabaseHelper.selectUserMessage("received", UserName);
 			req.setAttribute("username", UserName);
 			req.setAttribute("mesList", mesList);
-//			req.getSession().setAttribute("UserName", null);
 		}
 
 		RequestDispatcher dispatcher = req

@@ -21,18 +21,17 @@ public class LoadUsersListServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("going to list-page");
 
 		List<User> listUser = DatabaseHelper.selectAllUsers();
 		req.setAttribute("listUsers", listUser);
 		req.getSession().setAttribute("UserName", null);
 		
 		Breadcrumbs b = (Breadcrumbs) req.getSession().getAttribute("breadcrumbs");
+		b.setParent1(null);
 		b.setParent2(new Node(NodeNames.MAIN, NodeNames.MAIN_URL));
 		b.setCurrent(new Node(NodeNames.USER_LIST));
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsps/UsersList.jsp");
 		dispatcher.forward(req, resp);
-
 	}
 }

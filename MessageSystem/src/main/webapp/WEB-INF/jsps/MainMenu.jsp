@@ -8,10 +8,18 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="logout.jsp"></jsp:include>
-	<p><a href="UsersList">Список участников в системе</a></p>
-	<p><a href="SendMessage">Отправить сообщение</a></p>
-	<p><a href="PersonalReceived">Полученные сообщения</a></p>
-	<p><a href="PersonalSended">Отправленные сообщения</a></p>
+	<jsp:include page="BreadCrumbsHeader.jsp"></jsp:include>
+	<p>
+		<a href="UsersList">Список участников в системе</a>
+	</p>
+	<p>
+		<a href="SendMessage">Отправить сообщение</a>
+	</p>
+	<p>
+		<a href="PersonalReceived">Полученные сообщения</a>
+	</p>
+	<p>
+		<a href="PersonalSended">Отправленные сообщения</a>
+	</p>
 </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="logout.jsp"></jsp:include>
+	<jsp:include page="BreadCrumbsHeader.jsp"></jsp:include>
 	<form name='f' action="login" method='POST'>
 		<table>
 			<tr height="20">

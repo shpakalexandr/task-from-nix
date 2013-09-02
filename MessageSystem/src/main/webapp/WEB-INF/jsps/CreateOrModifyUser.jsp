@@ -9,7 +9,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="logout.jsp"></jsp:include>
+	<jsp:include page="BreadCrumbsHeader.jsp"></jsp:include>
 	<c:choose>
 		<c:when test="${CREATE}">
 			<form name="cr" action="UserCreate" method="post">

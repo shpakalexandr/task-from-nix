@@ -24,7 +24,6 @@ public class AnalysisAndSendServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("going to analis and send");
 		Message.clear();
 
 		String receiver = req.getParameter("messagereciever");
@@ -54,17 +53,7 @@ public class AnalysisAndSendServlet extends HttpServlet {
 			RequestDispatcher dispatcher = req
 					.getRequestDispatcher("/SendMessage");
 			dispatcher.forward(req, resp);
-			return;/*
-					 * You aren't returning after the forward when the login
-					 * and/or password is not been supplied. It's a common
-					 * misconception among starters that the forward() method
-					 * magically terminates the code execution and jumps out of
-					 * the method somehow. This is thus not true. You have to
-					 * return from the method and stop the execution of the
-					 * remnant of the code yourself.
-					 * 
-					 * You need to either add a return;
-					 */
+			return;
 		} else {
 			if (whosend.equals(receiver)) {
 				Message.add("Пользователь не может отослать сам себе сообщение!");
@@ -93,18 +82,7 @@ public class AnalysisAndSendServlet extends HttpServlet {
 					RequestDispatcher dispatcher = req
 							.getRequestDispatcher("/SendMessage");
 					dispatcher.forward(req, resp);
-					return;/*
-							 * You aren't returning after the forward when the
-							 * login and/or password is not been supplied. It's
-							 * a common misconception among starters that the
-							 * forward() method magically terminates the code
-							 * execution and jumps out of the method somehow.
-							 * This is thus not true. You have to return from
-							 * the method and stop the execution of the remnant
-							 * of the code yourself.
-							 * 
-							 * You need to either add a return;
-							 */
+					return;
 				} else {
 
 					DatabaseHelper.insertMessage(whosend, receiver, title,
@@ -112,18 +90,7 @@ public class AnalysisAndSendServlet extends HttpServlet {
 					RequestDispatcher dispatcher = req
 							.getRequestDispatcher("/SuccessSend");
 					dispatcher.forward(req, resp);
-					return; /*
-							 * You aren't returning after the forward when the
-							 * login and/or password is not been supplied. It's
-							 * a common misconception among starters that the
-							 * forward() method magically terminates the code
-							 * execution and jumps out of the method somehow.
-							 * This is thus not true. You have to return from
-							 * the method and stop the execution of the remnant
-							 * of the code yourself.
-							 * 
-							 * You need to either add a return;
-							 */
+					return;
 				}
 			}
 		}

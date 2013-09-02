@@ -9,20 +9,22 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="logout.jsp"></jsp:include>
+	<jsp:include page="BreadCrumbsHeader.jsp"></jsp:include>
 	<form name="send" action="MessageSend" method="post">
 		<table align="center">
 			<tr>
 				<td align="right">Получатель:&emsp;</td>
-				<td><input type="text" name="messagereciever" size="20" value="${messagereciever}"><B><FONT SIZE=3 COLOR=RED>
-					<c:out value="${recievererrorstar}" /></FONT></B><input name="submit"
-					type="submit" value="Создать" /></td>
+				<td><input type="text" name="messagereciever" size="20"
+					value="${messagereciever}"><B><FONT SIZE=3 COLOR=RED>
+							<c:out value="${recievererrorstar}" />
+					</FONT></B><input name="submit" type="submit" value="Создать" /></td>
 			</tr>
 
 			<tr>
 				<td align="right">Тема:&emsp;</td>
-				<td><input type="text" name="messagetitle" size="84" value="${messagetitle}">
-				<B><FONT SIZE=3 COLOR=RED><c:out value="${titleererrorstar}" /></FONT></B></td>
+				<td><input type="text" name="messagetitle" size="84"
+					value="${messagetitle}"> <B><FONT SIZE=3 COLOR=RED><c:out
+								value="${titleererrorstar}" /></FONT></B></td>
 			</tr>
 
 			<tr>

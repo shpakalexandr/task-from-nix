@@ -22,20 +22,16 @@ public class MessageSystemListener implements ServletContextListener {
 		String messageTable = DatabaseHelper.MESSAGE_TABLE;
 
 		if (!DatabaseHelper.tableExist(rolesTable)) {
-			System.out.println("Table " + rolesTable + " not exist!!!");
 			DatabaseHelper.createRolesTable();
 			DatabaseHelper.insertRole(1, "ROLE_ADMIN");
 			DatabaseHelper.insertRole(2, "ROLE_USER");
 
 		}
 		if (!DatabaseHelper.tableExist(usersTable)) {
-			System.out.println("Table " + usersTable + " not exist!!!");
 			DatabaseHelper.createUsersTable();
 			DatabaseHelper.insertUser("Alexandr", "Shpak", "admin", "123", 1);
-			DatabaseHelper.insertUser("Aexandr", "Shak", "puh", "12", 2);
 		}
 		if (!DatabaseHelper.tableExist(messageTable)) {
-			System.out.println("Table " + messageTable + " not exist!!!");
 			DatabaseHelper.createMessagesTable();
 		}
 

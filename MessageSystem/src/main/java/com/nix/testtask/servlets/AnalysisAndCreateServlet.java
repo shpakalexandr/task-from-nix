@@ -21,7 +21,6 @@ public class AnalysisAndCreateServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("going to analis and create");
 		Message.clear();
 
 		String userfirstname = req.getParameter("cruserfirstname");
@@ -57,17 +56,7 @@ public class AnalysisAndCreateServlet extends HttpServlet {
 			RequestDispatcher dispatcher = req
 					.getRequestDispatcher("/CreateUser");
 			dispatcher.forward(req, resp);
-			return;/*
-					 * You aren't returning after the forward when the login
-					 * and/or password is not been supplied. It's a common
-					 * misconception among starters that the forward() method
-					 * magically terminates the code execution and jumps out of
-					 * the method somehow. This is thus not true. You have to
-					 * return from the method and stop the execution of the
-					 * remnant of the code yourself.
-					 * 
-					 * You need to either add a return;
-					 */
+			return;
 		} else {
 			if (DatabaseHelper.analysisNickname(usernickname, "create")) {
 				Message.add("Пользователь с таким никнеймом уже существует!");
@@ -82,34 +71,14 @@ public class AnalysisAndCreateServlet extends HttpServlet {
 				RequestDispatcher dispatcher = req
 						.getRequestDispatcher("/CreateUser");
 				dispatcher.forward(req, resp);
-				return;/*
-						 * You aren't returning after the forward when the login
-						 * and/or password is not been supplied. It's a common
-						 * misconception among starters that the forward()
-						 * method magically terminates the code execution and
-						 * jumps out of the method somehow. This is thus not
-						 * true. You have to return from the method and stop the
-						 * execution of the remnant of the code yourself.
-						 * 
-						 * You need to either add a return;
-						 */
+				return;
 			} else {
 				DatabaseHelper.insertUser(userfirstname, userlastname,
 						usernickname, userpassword, 2);
 				RequestDispatcher dispatcher = req
 						.getRequestDispatcher("/UsersList");
 				dispatcher.forward(req, resp);
-				return; /*
-						 * You aren't returning after the forward when the login
-						 * and/or password is not been supplied. It's a common
-						 * misconception among starters that the forward()
-						 * method magically terminates the code execution and
-						 * jumps out of the method somehow. This is thus not
-						 * true. You have to return from the method and stop the
-						 * execution of the remnant of the code yourself.
-						 * 
-						 * You need to either add a return;
-						 */
+				return;
 			}
 		}
 	}

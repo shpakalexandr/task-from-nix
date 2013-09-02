@@ -12,7 +12,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="logout.jsp"></jsp:include>
+	<jsp:include page="BreadCrumbsHeader.jsp"></jsp:include>
 	<form name='f' action="CreateUser" method='POST'>
 		<table width="100%">
 			<tr>
@@ -50,7 +50,8 @@
 							<c:url var="deleteUrl" value="/DeleteUser?id=${current.userid}" />
 							<c:url var="receivedUrl"
 								value="/AdministrationReceived?id=${current.userid}" />
-							<c:url var="sendedUrl" value="/AdministrationSended?id=${current.userid}" />
+							<c:url var="sendedUrl"
+								value="/AdministrationSended?id=${current.userid}" />
 							<tr>
 								<td><a href="${modifyUrl}">Модифицировать</a></td>
 								<td><a href="${deleteUrl}">Удалить</a></td>

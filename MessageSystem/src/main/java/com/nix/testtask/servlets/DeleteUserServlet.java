@@ -18,8 +18,6 @@ public class DeleteUserServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("going to delete-page");
-
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		DatabaseHelper.deleteUser(id);

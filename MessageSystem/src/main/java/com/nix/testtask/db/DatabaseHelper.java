@@ -12,32 +12,19 @@ import java.util.List;
 
 import com.nix.testtask.servlets.ModifyServlet;
 
-/*
- * Класс DatabaseHelper разработан специально для работы с базой данных
- */
 public class DatabaseHelper {
 	public static final String USERS_TABLE = "app_users";
 	public static final String ROLES_TABLE = "app_user_role";
 	public static final String MESSAGE_TABLE = "app_messages";
 
 	public static final String JDBC_DRIVER = "org.h2.Driver";
-	// public static final String DB_URL = "jdbc:h2:mem:test";
-	public static final String DB_URL = "jdbc:h2:tcp://localhost/~/test";
+	public static final String DB_URL = "jdbc:h2:mem:test";
 
 	static final String USER = "sa";
 	static final String PASS = "";
 
 	static Connection conn = null;
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/*
- * 
- */
-
-	/*
-	 * Метод, создающий соединение с базой данных. Используется только в
-	 * MessageSystemListener пакета com.nix.testtask.listeners
-	 */
 	public static void openConnetion() {
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -47,10 +34,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	/*
-	 * Метод, закрывающий соединение с базой данных. Используется только в
-	 * MessageSystemListener пакета com.nix.testtask.listeners
-	 */
 	public static void closeConnection() {
 		try {
 			if (conn != null) {
@@ -61,9 +44,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	/*
-	 * Метод, закрывающий Statement. Используется только в рамках данного класса
-	 */
 	private static void closeStatement(Statement stmt1) {
 		if (stmt1 != null) {
 			try {
@@ -74,17 +54,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/*
-	 * Методы для создания таблиц базы данных в том случе если они не
-	 * существуют. Используются эти методы в MessageSystemListener пакета
-	 * com.nix.testtask.listeners
-	 */
-
-	/*
-	 * Метод, создающий таблицу базы данных, предназначенную для хранения данных
-	 * о ролях пользователей системы
-	 */
 	public static void createRolesTable() {
 		Statement stmt = null;
 		try {
@@ -98,14 +67,9 @@ public class DatabaseHelper {
 			e.printStackTrace();
 		} finally {
 			closeStatement(stmt);
-			System.out.println("Table is created???");
 		}
 	}
 
-	/*
-	 * Метод, создающий таблицу базы данных, предназначенную для хранения данных
-	 * о пользователях системы
-	 */
 	public static void createUsersTable() {
 		Statement stmt = null;
 		try {
@@ -125,14 +89,9 @@ public class DatabaseHelper {
 			e.printStackTrace();
 		} finally {
 			closeStatement(stmt);
-			System.out.println("Table is created???");
 		}
 	}
 
-	/*
-	 * Метод, создающий таблицу базы данных, предназначенную для хранения
-	 * передаваемых и получаемых сообщений
-	 */
 	public static void createMessagesTable() {
 		Statement stmt = null;
 		try {
@@ -156,22 +115,9 @@ public class DatabaseHelper {
 			e.printStackTrace();
 		} finally {
 			closeStatement(stmt);
-			System.out.println("Table is created???");
 		}
 	}
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/*
-	 * Методы предназначенные для добавления записей в таблицы. Используются эти
-	 * методы в MessageSystemListener пакета com.nix.testtask.listeners и при
-	 * редактировании данных
-	 */
-
-	/*
-	 * Метод, предназначенный для добавления записей в таблицу ролей.
-	 * Используется только в MessageSystemListener пакета
-	 * com.nix.testtask.listeners
-	 */
 	public static void insertRole(int roleId, String roleName) {
 		PreparedStatement stmt = null;
 		try {
@@ -189,12 +135,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	/*
-	 * Метод, предназначенный для добавления записей в таблицу пользователей
-	 * системы. Используются в MessageSystemListener пакета
-	 * com.nix.testtask.listeners, а также в AnalysisAndCreateServlet при
-	 * создании нового пользователя.
-	 */
 	public static void insertUser(String userFirstName, String userLastName,
 			String userNickName, String userPassword, int userRoleId) {
 		PreparedStatement stmt = null;
@@ -218,10 +158,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	/*
-	 * Метод, предназначенный для добавления записей в таблицу сообщений.
-	 * Используются в ...
-	 */
 	public static void insertMessage(String whosendmess, String whoreceivemess,
 			String messagetitle, String messagebody) {
 		PreparedStatement stmt = null;
@@ -234,12 +170,9 @@ public class DatabaseHelper {
 			stmt.setInt(1, getIDByUsername(whosendmess));
 			stmt.setString(2, whosendmess);
 			stmt.setInt(3, getIDByUsername(whoreceivemess));
-
 			stmt.setString(4, whoreceivemess);
-
 			stmt.setString(5, messagetitle);
 			stmt.setString(6, messagebody);
-
 			stmt.addBatch();
 			stmt.executeBatch();
 
@@ -250,11 +183,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/*
-	 * Метод, предназначанный для проверки существования заданной таблици.
-	 * Используются в MessageSystemListener пакета com.nix.testtask.listeners
-	 */
 	public static boolean tableExist(String tablename) {
 		DatabaseMetaData md;
 		ResultSet rs = null;
@@ -270,11 +198,6 @@ public class DatabaseHelper {
 		return exist;
 	}
 
-	/*
-	 * Метод, предназначанный для проверки существования заданного никнейма в
-	 * базеданных. Используются в AnalysisAndSendServlet пакета
-	 * com.nix.testtask.servlets
-	 */
 	public static boolean nicknameExist(String nickname) {
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -298,17 +221,6 @@ public class DatabaseHelper {
 		return exist;
 	}
 
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/*
-	 * Методы, предназаначенные для обработки запросов к базе со стороны
-	 * клиентов.
-	 */
-
-	/*
-	 * Метод формирует и возвращает список всех пользователей системы из
-	 * соответствующей таблицы базы данных. Используется в LoadUsersListServlet
-	 * пакета com.nix.testtask.servlet
-	 */
 	public static List<User> selectAllUsers() {
 		Statement stmt = null;
 		List<User> userList = new ArrayList<User>();
@@ -338,9 +250,6 @@ public class DatabaseHelper {
 		return userList;
 	}
 
-	/*
-	 * 
-	 */
 	public static List<Message> selectUserMessage(String type, String nickname) {
 		Statement stmt = null;
 		List<Message> messageList = new ArrayList<Message>();
@@ -411,10 +320,6 @@ public class DatabaseHelper {
 		return messageList;
 	}
 
-	/*
-	 * Метод находит и возвращает пользователя с заданным ID. Используется в
-	 * ModifyServlet пакета com.nix.testtask.servlets
-	 */
 	public static User getUserByID(int id) {
 		Statement stmt = null;
 		User u = new User();
@@ -444,10 +349,6 @@ public class DatabaseHelper {
 		return u;
 	}
 
-	/*
-	 * Метод находит и возвращает пользователя с заданным ID. Используется в
-	 * ModifyServlet пакета com.nix.testtask.servlets
-	 */
 	private static int getIDByUsername(String usernickname) {
 		Statement stmt = null;
 		int ID = 0;
@@ -472,11 +373,6 @@ public class DatabaseHelper {
 		return ID;
 	}
 
-	/*
-	 * Метод проверяет наличие идентичного никнейма в таблице пользователей базы
-	 * данных. Используется в AnalisisAndCreateServlet и
-	 * AnalisisAndModifyServlet пакета com.nix.testtask.servlets
-	 */
 	public static boolean analysisNickname(String nickname, String operation) {
 		boolean analysisResult = false;
 		Statement stmt = null;
@@ -489,8 +385,6 @@ public class DatabaseHelper {
 			while (rs.next()) {
 				String userNick = rs.getString("user_nickname");
 				int userID = rs.getInt("user_id");
-
-				System.out.println("" + userNick + userID);
 
 				// Использование короткой схемы для проверки
 				if (operation.equals("create") && userNick.equals(nickname)) {
@@ -511,11 +405,6 @@ public class DatabaseHelper {
 		return analysisResult;
 	}
 
-	/*
-	 * Метод изменяет запись в таблице пользователей, соответствующую
-	 * определенному ID. Используется в AnalisisAndModifyServlet пакета
-	 * com.nix.testtask.servlets
-	 */
 	public static void modifyUser(String userFirstName, String userLastName,
 			String userNickName, String userPassword) {
 		Statement stmt = null;
@@ -534,11 +423,6 @@ public class DatabaseHelper {
 		}
 	}
 
-	/*
-	 * Метод удаляет запись из таблицы пользователей, соответствующую
-	 * определенному ID. Используется в DeleteServlet пакета
-	 * com.nix.testtask.servlets
-	 */
 	public static void deleteUser(int ID) {
 		Statement stmt = null;
 		try {
@@ -593,12 +477,6 @@ public class DatabaseHelper {
 		Statement stmt = null;
 
 		try {
-			/*
-			 * String sqlsrc = "SELECT WHO_SEND_ID FROM  " + MESSAGE_TABLE +
-			 * " WHERE MESS_ID="+ ID + ";"; stmt = conn.createStatement();
-			 * ResultSet rs = stmt.executeQuery(sqlsrc);
-			 */
-
 			String sqlsrc = "UPDATE " + MESSAGE_TABLE
 					+ " SET DISP_MESS_SENDER=FALSE WHERE MESS_ID=" + ID + ";";
 			stmt = conn.createStatement();
@@ -614,12 +492,6 @@ public class DatabaseHelper {
 		Statement stmt = null;
 
 		try {
-			/*
-			 * String sqlsrc = "SELECT WHO_SEND_ID FROM  " + MESSAGE_TABLE +
-			 * " WHERE MESS_ID="+ ID + ";"; stmt = conn.createStatement();
-			 * ResultSet rs = stmt.executeQuery(sqlsrc);
-			 */
-
 			String sqlsrc = "UPDATE " + MESSAGE_TABLE
 					+ " SET DISP_MESS_RECEIVER=FALSE WHERE MESS_ID=" + ID + ";";
 			stmt = conn.createStatement();

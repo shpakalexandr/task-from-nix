@@ -18,8 +18,6 @@ public class AdminDeleteReceivedMessageServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("going to deletereceivedmessage-page");
-
 		int id = Integer.parseInt(req.getParameter("id"));
 		DatabaseHelper.removeFromReceived(id);
 

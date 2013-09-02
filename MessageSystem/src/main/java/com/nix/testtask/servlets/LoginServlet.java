@@ -19,8 +19,6 @@ public class LoginServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-			System.out.println("going to forward");
-			
 			Breadcrumbs b = new Breadcrumbs();
 			b.setCurrent(new Node(NodeNames.MAIN));
 			
@@ -28,6 +26,5 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = req
 					.getRequestDispatcher("/WEB-INF/jsps/MainMenu.jsp");
 			dispatcher.forward(req, resp);	
-
 	}
 }
